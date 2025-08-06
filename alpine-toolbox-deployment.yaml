@@ -12,7 +12,7 @@ spec:
       labels:
         app: alpine-toolbox
     spec:
-      hostname: alpine-toolbox  # 👈 Sets the hostname inside the pod
+      hostname: alpine-toolbox
       containers:
       - name: toolbox
         image: ghcr.io/averagenative/alpine-toolbox:latest
