@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-toolbox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alpine-toolbox
+  template:
+    metadata:
+      labels:
+        app: alpine-toolbox
+    spec:
+      hostname: alpine-toolbox  # 👈 Sets the hostname inside the pod
+      containers:
+      - name: toolbox
+        image: ghcr.io/averagenative/alpine-toolbox:latest
+        imagePullPolicy: Always
+        tty: true
+        stdin: true
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 200m
+            memory: 128Mi
+        livenessProbe:
+          exec:
+            command: ["sh", "-c", "echo alive"]
+          initialDelaySeconds: 10
+          periodSeconds: 30
+        readinessProbe:
+          exec:
+            command: ["sh", "-c", "echo ready"]
+          initialDelaySeconds: 5
+          periodSeconds: 10
