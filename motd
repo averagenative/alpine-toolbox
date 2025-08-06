@@ -18,3 +18,4 @@ curl -vk --connect-timeout 10 https://\\$KUBERNETES_SERVICE_HOST:443/version
 curl -vk --cacert /var/run/secrets/kubernetes.io/serviceaccount/ca.crt -H \\"Authorization: Bearer \$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)\\" --connect-timeout 10 https://\\$KUBERNETES_SERVICE_HOST:443/api/v1/nodes
 
 curl -vk http://servicename.namespace.svc:port/path/to/metrics
+...
